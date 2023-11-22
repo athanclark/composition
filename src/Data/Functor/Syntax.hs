@@ -37,6 +37,38 @@ infixr 8 <$$$$>
 
 infixr 8 <$$$$$>
 
+(<&&>) :: (Functor f0, Functor f1) =>
+          f1 (f0 a)
+       -> (a -> b)
+       -> f1 (f0 b)
+(<&&>) = flip (fmap . fmap)
+
+infixl 1 <&&>
+
+(<&&&>) :: (Functor f0, Functor f1, Functor f2) =>
+          f2 (f1 (f0 a))
+       -> (a -> b)
+       -> f2 (f1 (f0 b))
+(<&&&>) = flip (fmap . fmap . fmap)
+
+infixl 1 <&&&>
+
+(<&&&&>) :: (Functor f0, Functor f1, Functor f2, Functor f3) =>
+          f3 (f2 (f1 (f0 a)))
+       -> (a -> b)
+       -> f3 (f2 (f1 (f0 b)))
+(<&&&&>) = flip (fmap . fmap . fmap . fmap)
+
+infixl 1 <&&&&>
+
+(<&&&&&>) :: (Functor f0, Functor f1, Functor f2, Functor f3, Functor f4) =>
+          f4 (f3 (f2 (f1 (f0 a))))
+       -> (a -> b)
+       -> f4 (f3 (f2 (f1 (f0 b))))
+(<&&&&&>) = flip (fmap . fmap . fmap . fmap . fmap)
+
+infixl 1 <&&&&&>
+
 -- * Nested Application
 
 (<$~>) :: Functor f0 =>
